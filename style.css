@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    overflow: hidden;
     font-family: sans-serif;
     margin: 0;
     width: 100%;
@@ -11,6 +12,7 @@ body {
 
 .container {
     display: grid;
+    height: 100vh;
     grid-template-rows: 100px auto;
     grid-template-columns: 400px auto;
 }
@@ -28,7 +30,7 @@ body {
 }
 
 .chat__selector {
-    padding-top: 5px;
+    margin-top: 5px;
     float: left;
     overflow-x: auto;
     scroll-snap-type: y mandatory;
@@ -41,22 +43,24 @@ body {
     align-items: center;
     height: 100px;
     font-size: 20px;
-    scroll-snap-align: start;
+    scroll-snap-align: none;
 }
 
 .chat {
     border-left: 5px solid white;
     border-top: 5px solid white;
-    display: grid;
-    grid-template-rows: auto 100px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 .messages {
-    background: #2b3136;
+    background: url("images/chat-background.png");
+    background-size: 400px;
     float: right;
     overflow-x: auto;
     scroll-snap-type: y mandatory;
-    height: 80vh;
+    height: 100%;
 }
 
 .message {
@@ -65,9 +69,11 @@ body {
     align-items: center;
     height: auto;
     padding: 10px;
+    scroll-snap-align: none;
 }
 
 .message__no, .message__from, .message__to {
+    max-width: 50%;
     padding: 10px;
     border-radius: 15px;
 }
@@ -88,13 +94,7 @@ body {
     justify-content: right;
 }
 
-.text__input {
-    margin-right: 20px;
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.text__input, .selected {
+.selected {
     background-color: darkcyan;
 }
 
@@ -104,8 +104,7 @@ body {
 }
 
 .avatar {
-    border: 3px solid white;
-    border-radius: 100%;
+    border: 5px solid white;
     margin-left: 10px;
     margin-right: 10px;
     width: 80px;
@@ -117,4 +116,39 @@ body {
 
 .selected {
     color: white;
+}
+
+.text__input {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 0;
+}
+
+label {
+    width: 100%;
+}
+
+.text {
+    border: 12px solid pink;
+    width: 100%;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #eeeeee;
+    height: 10vh;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    width: 5px;
+}
+*::-webkit-scrollbar-track {
+    opacity: 0;
+    background: #ffffff;
+}
+*::-webkit-scrollbar-thumb {
+    opacity: 0;
+    border-radius: 5px;
+    border: 3px solid gray;
 }
